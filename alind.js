@@ -1,13 +1,30 @@
-const { Client, Collection } = require('discord.js');
-const { PREFIX, TOKEN } = require('./config');
-const client = new Client({ disableMentions: 'everyone' });
+const { Client, MessageEmbed } = require("discord.js");
+var { Util } = require("discord.js");
+const client = new Client({ disableEveryone: true });
+const canvas = require("canvas");
+const Canvas = require("canvas");
+const convert = require("hh-mm-ss");
+const botversion = require("./package.json").version;
+const moment = require("moment");
 const fs = require("fs");
-const db = require('quick.db');
+const util = require("util");
+const gif = require("gif-search");
+const ms = require("ms");
+const jimp = require("jimp");
+const math = require("math-expression-evaluator");
+const { get } = require("snekfetch");
+const guild = require("guild");
+
+const dateFormat = require("dateformat");
+var table = require("table").table;
+const Discord = require("discord.js");
+const cmd = require("node-cmd");
 const prefix = "!";
-//////Respect//////
+
+////////////
 client.on("ready", () => {
-  console.log(`${calli.user.tag}`);
-  calli.user.setActivity(`${prefix}help`, {
+  console.log(`${client.user.tag}`);
+  client.user.setActivity(`${prefix}help`, {
     Type: "Playing"
   });
 });
@@ -24,7 +41,7 @@ client.on("message", async message => {
       cooldown.delete(message.author.id);
     }, cdtime * 1000);
     let help = new Discord.MessageEmbed()
-      .setColor(Red)
+      .setColor(color))
       .setThumbnail(message.member.user.displayAvatarURL({ dynamic: true }))
       .setDescription(`
 **Info Commands**
@@ -32,6 +49,8 @@ client.on("message", async message => {
 \`${prefix}userinfo\`
 \`${prefix}serverinfo\`
 \`${prefix}invite\`
+\`${prefix}profilep\`
+
 **Moderation Commands**
 \`${prefix}lock\`
 \`${prefix}unlock\`
@@ -59,11 +78,29 @@ client.on("message", async message => {
       cooldown.delete(message.author.id);
     }, cdtime * 1000);
     let help = new Discord.MessageEmbed()
-      .setColor(callicolor)
+      .setColor(RANDOM)
       .setDescription(`
 [Click here]) **to invite the bot.**
 `);
     message.channel.send(help);
+  }
+});
+////Profile////
+client.on("message", async message => {
+  if (message.content.toLowerCase() === prefix + "profile") {
+    message.channel.startTyping();
+    setTimeout(() => {
+      message.channel.stopTyping();
+    }, Math.random() * (1 - 3) + 1 * 200).then(
+      message.channel.send({
+        files: [
+          {
+            name: "prfoilebycutie.png",
+            attachment: `https://api.probot.io/profile/${message.author.id}`
+          }
+        ]
+      })
+    );
   }
 });
 ////Botinfo////
