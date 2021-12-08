@@ -363,7 +363,7 @@ client.on("message", message => {
 });
 ////Tokin////
 
-client.login("")
+client.login("OTE3NDkwNDU3MTM3NzgyODE0.Ya5dkw.KgP76eI6e0BqL6Hheno4oVE1QyM")
 
 
 Code By Respect.
